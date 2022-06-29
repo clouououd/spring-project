@@ -37,6 +37,10 @@ public class UserServiceImpl {
         return userDAO.read(email);
     };
 
+    public UserVO readUser(String name) {
+        return userDAO.readUser(name);
+    };
+
     // 회원 수정
     public int modify(UserVO userVO) {
         return userDAO.modify(userVO);

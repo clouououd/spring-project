@@ -1,7 +1,12 @@
 
 package com.example.teamproject.controller.user;
 
-import com.example.teamproject.domain.vo.UserVO;
+import com.example.teamproject.domain.vo.*;
+import com.example.teamproject.service.board.BoardFileServiceImpl;
+import com.example.teamproject.service.board.BoardServiceImpl;
+import com.example.teamproject.service.product.ProductFileServiceImpl;
+import com.example.teamproject.service.product.ProductServieceImpl;
+import com.example.teamproject.service.request.RequestServieceImpl;
 import com.example.teamproject.service.user.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +20,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -22,6 +29,11 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class UserController {
     private final UserServiceImpl userService;
+    private final BoardServiceImpl boardService;
+    private final ProductServieceImpl productServiece;
+    private final RequestServieceImpl requestServiece;
+    private final BoardFileServiceImpl boardFileService;
+    private final ProductFileServiceImpl productFileService;
     // 회원가입/로그인/비밀번호찾기/마이페이지
 
     @GetMapping("/join")
@@ -136,14 +148,47 @@ public class UserController {
     // 마이페이지
 
     @GetMapping("/mypage")
-    public String goToMypage(Model model){
+    public String goToMypage(HttpSession session, Model model){
         log.info("*************");
         log.info("마이페이지");
         log.info("*************");
-        // 개인정보
-        // 좋아요한 다이어리 목록
-        // 내가 쓴 다이어리 목록
-        // 내가 올린 상품 목록
+//          유저 정보
+        log.info(userService.readUser(session.getAttribute("name").toString()).toString());
+       model.addAttribute("userInfo", userService.readUser(session.getAttribute("name").toString()));
+//         다이어리 리스트
+        List<BoardVO> boardList = boardService.getListMain(new Criteria(1, 6));
+        model.addAttribute("boardList", boardList) ;
+//         다이어리 썸네일 리스트
+        String bRequestUrl = "/boardFile/display?fileName=";
+        String boardThumFileName = "";
+        List<String> boardThumfileUrlList = new ArrayList<>();
+        for(BoardVO b : boardList){
+            List<FileVO> boardFileList = boardFileService.getList(b.getBno());
+            if(!boardFileList.isEmpty()){
+                boardThumFileName = bRequestUrl + boardFileList.get(0).getUploadPath() + "/"  + boardFileList.get(0).getUuid() + "_" + boardFileList.get(0).getFileName();
+            }else{
+                boardThumFileName = "/images/no_image.gif";
+            }
+            boardThumfileUrlList.add(boardThumFileName);
+        }
+        model.addAttribute("boardThumfileUrlList", boardThumfileUrlList);
+//         상품 리스트
+        List<ProductVO> productList = productServiece.getListMain(new Criteria(1, 15));
+        model.addAttribute("productList", productList) ;
+//         상품 썸네일 리스트
+        String pRequestUrl = "/productFile/display?fileName=";
+        String productThumFileName = "";
+        List<String> productThumfileUrlList = new ArrayList<>();
+        for(ProductVO p : productList){
+            List<ProductFileVO> productFileList = productFileService.getList(p.getPno());
+            if(!productFileList.isEmpty()){
+                productThumFileName =  pRequestUrl + productFileList.get(0).getUploadPath() + "/"  + productFileList.get(0).getUuid() + "_" + productFileList.get(0).getFileName();
+            }else{
+                productThumFileName = "/images/no_image.gif";
+            }
+            productThumfileUrlList.add(productThumFileName);
+        }
+        model.addAttribute("productThumfileUrlList", productThumfileUrlList);
         return "/user/mypage";
     }
 

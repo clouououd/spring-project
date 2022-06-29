@@ -48,9 +48,9 @@
     </select>
 
     <select id="getInfo" resultType="UserVO">
-        SELECT NAME, PW, COVER, EMAIL,UNUM
+        SELECT NAME, PW, EMAIL, NAME, COVER
         FROM TBL_USER
-        WHERE UNUM = #{unum}
+        WHERE NAME = #{name}
     </select>
 
     <delete id="delete">
