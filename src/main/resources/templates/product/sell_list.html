@@ -13,8 +13,7 @@
         .let{
             margin-top: 1%;
             margin-bottom: 1%;
-            margin-left: 10px;
-            border-radius: 30px;
+            margin-left: 2%;
             display: block;
 
         }
@@ -67,25 +66,25 @@
 <main class ="plp-page-container" >
     <div class="container__inner">
         <div clas="wrapper">
-
-        <!-- Product -->
-        <div class="container" >
-            <div class ="let" >
-                <form action="/product/list" name="cateForm" th:object="${criteria}">
-                    <div class="fields">
-                        <div id="cateWrap">
-                            <select id = land th:name="type" th:value="*{type}" onchange="categoryChange(this)"  style="border: 1px solid #bdc1c6;">
-                                <option value="">대륙</option>
-                                <option th:value="TCN" th:selected="*{type} == 'TCN'">전체</option>
-                                <option th:value="P" th:selected="*{type} == 'P'">아시아</option>
-                                <option th:value="P" th:selected="*{type} == 'P'">유럽</option>
-                                <option th:value="P" th:selected="*{type} == 'P'">아프리카</option>
-                                <option th:value="P" th:selected="*{type} == 'P'">남아메리카</option>
-                                <option th:value="P" th:selected="*{type} == 'P'">북아메리카</option>
-                                <option th:value="P" th:selected="*{type} == 'P'">오스트레일리아</option>
-                            </select>
-                            <input type="text" id="result" name="keyword" th:value="*{keyword}"  style="display:none;">
-
+            <!-- Product -->
+            <div class="container" >
+                <div class ="let" th:object="${pageDTO}">
+                    <form action="/product/list" name="cateForm" th:object="${criteria}">
+                        <div class="fields">
+                            <div id="searchWrap">
+                                <select id = land name="type" onchange="categoryChange(this)">
+                                    <option value="">대륙</option>
+                                    <option value="TCN" th:selected="*{type} == 'TCN'">전체</option>
+                                    <option value="P" th:selected="*{type} == 'P'">아시아</option>
+                                    <option value="P" th:selected="*{type} == 'P'">유럽</option>
+                                    <option value="P" th:selected="*{type} == 'P'">아프리카</option>
+                                    <option value="P" th:selected="*{type} == 'P'">남아메리카</option>
+                                    <option value="P" th:selected="*{type} == 'P'">남아메리카</option>
+                                    <option value="P" th:selected="*{type} == 'P'">북아메리카</option>
+                                    <option value="P" th:selected="*{type} == 'P'">오스트레일리아</option>
+                                </select>
+                                <input type="text" id="result" name="keyword" th:value="*{keyword}"  style="display:none;">
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -138,40 +137,6 @@
                     <a class="changePage" th:href="*{criteria.pageNum - 1}" th:if="*{criteria.pageNum > 1}"><code>&lt;</code></a>
                     <code th:text="*{criteria.pageNum}"></code>
                     <a class="changePage" th:href="*{criteria.pageNum + 1}" th:if="*{criteria.pageNum < realEnd}"><code>&gt;</code></a>
-
-
-
-                </th:block>
-            </div>
-
-            <form action="/product/list" name="searchForm" th:object="${criteria}">
-            <div class="buttons flex">
-                <div class="searchbox py-lg-5" style="border-bottom: solid 1px #cccccc;">
-
-                    <div class="input-group input-group-sm" style="width: 70%; margin:0 auto;">
-
-                        <div class="select-box">
-                            <select class="search-selector" name="type">
-                                <option value="">검색 기준</option>
-                                <option value="TCNP" th:selected="*{type} == 'TCN'">전체</option>
-                                <option value="T" th:selected="*{type} == 'T'">제목</option>
-                                <option value="C" th:selected="*{type} == 'C'">내용</option>
-                                <option value="N" th:selected="*{type} == 'N'">작성자</option>
-                                <option value="P" th:selected="*{type} == 'N'">카테고리</option>
-                                <option value="R" th:selected="*{type} == 'R'">가격</option>
-                                <option value="TC" th:selected="*{type} == 'TC'">제목 또는 내용</option>
-                                <option value="TN" th:selected="*{type} == 'TN'">제목 또는 작성자</option>
-                                <option value="CN" th:selected="*{type} == 'CN'">내용 또는 작성자</option>
-                            </select>
-                        </div>
-                        <input type="text" name="keyword" value="" class="form-control input-search temp-margin" placeholder="검색어" size="10">
-                        <span class="input-group-btn">
-                                <button type="submit" class="btn btn-primary search-btn" title="검색">검색</button>
-                            </span>
-
-                    </div>
-
-
                 </div>
             </div>
             </form>

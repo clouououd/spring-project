@@ -236,9 +236,9 @@ function showList(page){
             str += "<span class='txt_date'>"
             str += reply.registerDate
             // str += "<a class='aInLi' href=''>신고</a></span>"
-            str += "</span><div class='my_edit'>"
+            str += "</span><div class='my_edit' style='right: 70px'>"
             // str += "<a href='#' class='link_edit'>수정</a>"
-            str += "<a onclick='delelteReply(" + reply.prno + ")' class='link_edit'>삭제</a>"
+            str += "<a onclick='delelteReply(" + reply.prno + ")' class='link_edit'>삭제</a></div>"
         });
 
         $(".list_reply").html(str);
