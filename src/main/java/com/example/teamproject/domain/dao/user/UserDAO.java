@@ -38,10 +38,6 @@ public class UserDAO {
         return userMapper.find(email);
     };
 
-    public UserVO readUser(String name){
-        return userMapper.getInfo(name);
-    };
-
     // 회원 수정
     public int modify(UserVO userVO){
         return userMapper.update(userVO);

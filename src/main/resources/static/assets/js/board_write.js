@@ -91,9 +91,10 @@ $("#thum").on("change", function(e){
 ///////////////////////////////////////////////////////////////////////////////////////
 // 썸머노트
 
-
+<<<<<<< HEAD
+<<<<<<< HEAD
 // summernote create
-
+<<<<<<< HEAD
 $("#summernote").summernote({
   tabsize: 2,
   height: 450, // 에디터 높이
@@ -108,7 +109,7 @@ $("#summernote").summernote({
     },
   },
 });
-
+=======
 // $("#summernote").summernote({
 //   tabsize: 2,
 //   height: 450, // 에디터 높이
@@ -123,9 +124,10 @@ $("#summernote").summernote({
 //     },
 //   },
 // });
+>>>>>>> 7c63baf3c9cd7749d6fef87933b0335a23abcc37
 
-
-
+=======
+>>>>>>> 87ba7f8e7bf7ff777de0d0a27ca13d7c38ed07f6
 //이미지 등록처리
 function imageUpload(files, editor) {
   var status = false;
@@ -167,7 +169,7 @@ function imageUpload(files, editor) {
     });
   }
 }
-
+=======
 // //이미지 등록처리
 // function imageUpload(files, editor) {
 //   var status = false;
@@ -209,17 +211,18 @@ function imageUpload(files, editor) {
 //     });
 //   }
 // }
-
+>>>>>>> af254b25c29f287a02d1cbecb70c44f179885df1
 
 // test용
 // $(document).on('click', '#uploadBtn', function (files, editor) {
 //   saveContent();
 // });
 
+<<<<<<< HEAD
 const saveContent = () => {
   var summernoteContent = $('#summernote').summernote('code'); // 썸머노트 작성내용(html)
   console.log("summernoteContent : " + summernoteContent);
-
+=======
 
 // $(".optionList").click(function (e) {
 //   e.preventDefault();
@@ -243,19 +246,19 @@ const saveContent = () => {
   // console.log($(".note-editable img").attr("src").split("=")[1].substr(48));
   // $("#fileName").val($(".note-editable img").attr("src").split("=")[1].substr(48));
 
-
+<<<<<<< HEAD
 
   if(confirm("글을 등록하시겠습니까?")) {
     $("form#registerForm").submit();
   }
-
+>>>>>>> 7c63baf3c9cd7749d6fef87933b0335a23abcc37
 }
-
+=======
   // if(confirm("글을 등록하시겠습니까?")) {
   //   $("form#registerForm").submit();
   // }
 // }
-
+>>>>>>> af254b25c29f287a02d1cbecb70c44f179885df1
 
 
 
