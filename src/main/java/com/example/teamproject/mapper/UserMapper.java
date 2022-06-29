@@ -18,7 +18,7 @@ public interface UserMapper {
     public void updatePw(String newPw, String email);
 
     public Long get(String name);
-    public UserVO getInfo(String name);
+    public UserVO getInfo(Long unum);
     public int delete(String email, String pw);
 
 }
