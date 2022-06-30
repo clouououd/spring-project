@@ -19,6 +19,9 @@ button {
 input:focus {
   outline: none;
 }
+input[type="checkbox"]{
+  display: none !important;
+}
 
 /* 버튼 사이즈 2개 */
 .btnL {

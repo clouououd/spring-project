@@ -206,7 +206,25 @@
       });
     }
 
+
+
     // 파일 리스트 submit
+    $(window).on("load",function(){
+      console.log($("div.note-editable img").length);
+      console.log($("div.note-editable img").eq(1).attr("src").split("=")[1].substr(0, 10)); // uploadPath
+      console.log($("div.note-editable img").eq(1).attr("src").split("=")[1].substr(11, 36)); // uuid
+      console.log($("div.note-editable img").eq(1).attr("src").split("=")[1].substr(48)); // fileName
+
+      for(let i = 0; i < $("div.note-editable img").length; i++){
+        let before = $("div.note-editable img").eq(i)
+        let existingFileName = before.attr("src").split("=")[1].substr(48);
+        let existingUuid = before.attr("src").split("=")[1].substr(11, 36);
+        let existingUploadPath = before.attr("src").split("=")[1].substr(0, 10);
+        let stor= "<div class='stor' data-filename='" + existingFileName + "' data-uuid='" + existingUuid + "' data-uploadpath='" + existingUploadPath  + "'>";
+        $("div.writeArea").append(stor);
+      }
+    });
+
     $("input[type='submit']").on("click", function(e) {
       // $("#uploadBtn").on("click", function(e) {
       e.preventDefault();
@@ -220,7 +238,7 @@
 
       let k = 0;
       let str = "";
-      for (let i = 0; i < $("div.writeArea > div").length; i++) { // div가 검색안됨
+      for (let i = 0; i < $("div.writeArea > div").length; i++) {
         for (let j = 0; j < $(".note-editable img").length; j++) {
           if ($("div.writeArea > div.stor").eq(i).data("filename") === $(".note-editable img").eq(j).attr("src").split("=")[1].substr(48)) {
             console.log($("div.writeArea > div.stor").eq(i).data("filename"));
