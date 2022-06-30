@@ -70,7 +70,7 @@ log.info(uploadFiles.toString());
 
             if(checkImageType(saveFile)){
                 FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-                Thumbnailator.createThumbnail(file.getInputStream(), thumbnail, 100, 100);
+                Thumbnailator.createThumbnail(file.getInputStream(), thumbnail, 500, 500);
                 thumbnail.close();
             }
             files.add(boardFileVO);
